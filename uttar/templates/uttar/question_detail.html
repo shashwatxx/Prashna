@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content  %}
+<h1>Question Details</h1>
+	<table class="table table-striped">
+	<tr><th>Question</th><td>{{object.question}}</td></tr>
+	<tr><th>Topic</th><td>{{object.topic}}</td></tr>
+	<tr><th>Status</th><td>{{object.status}}</td></tr>
+	<tr><th>Ask By</th><td>{{object.ask_by}}</td></tr>
+	<tr><th>Ask Date</th><td>{{object.ask_date}}</td></tr>
+	<tr><th>attach1</th><td><a href="/media/{{object.attach1}}">{{object.attach1}}</a></td></tr>
+		{% for a1 in answers2 %}
+	<tr><th>Answersed By {{a1.ans.ans_by}}</th><td>
+			{{a1.ans.answer}}
+			<a href="/media/{{a1.ans.attach1}}">{{a1.ans.attach1}}</a>
+			<span style="color: #999999">({{a1.ans.ans_date}})</span><br>
+			<form method="post" action= "/prashna/like/create/" >
+			{% csrf_token %}
+			<input type="hidden" name="aid" value="{{a1.ans.id}}" />
+			<input type="hidden" name="qid" value="{{object.id}}" />
+		    {% if a1.uLiked %}	
+		    {% else %}		
+     		<button class="btn btn-primary btn-sm" type="submit"><i style="color:white"  class="fa fa-thumbs-up"></i></button>
+			{% endif %}
+			<span class="btn btn-outline-primary btn-sm">Liked By {{a1.likes.count}}</span>
+			</form>
+	</td></tr>
+		{% endfor %}	
+<!-- 	<td ><a class="btn btn-info btn-sm" href="/prashna/question/{{q1.id}}/">Read More</a></td>  -->	
+	</table>
+    {% if user.is_authenticated %}
+    <!-- 
+    <form method="post" action="/prashna/answer/create/">
+    <input type="hidden" value="{{object.id}}" name="qid" />
+	<button type="submit" class="btn btn-success btn-sm">Answer The Question</button>
+    </form>
+     -->
+	<a class="btn btn-success btn-sm" href="/prashna/answer/create/?qid={{object.id}}">Answer The Question</a>
+	{% endif %}
+	<a class="btn btn-primary btn-sm" href="/prashna/question/">Back</a>
+{% endblock %}
+

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<!--  <video autoplay muted loop id="myVideo"> -->
+<video autoplay loop muted id="myVideo">
+  <source src="/static/rain.mp4" type="video/mp4">
+</video>
+<div id="cont1" class="content">
+  <h1>Prashna</h1>
+  <p>Bla bla bla bla bla bla bla bla bla bla...</p>
+  <!-- Use a button to pause/play the video with JavaScript -->
+  <button class="btn btn-light" id="myBtn" onclick="myFunction()">Pause</button>
+</div>
+<style>
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  min-width: 100%; 
+  min-height: 100%;
+}
+
+#cont1{
+  z-index: 2;
+}
+
+/* Add some content at the bottom of the video/page */
+.content {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+</style>
+
+<script>
+// Get the video
+var video = document.getElementById("myVideo");
+
+// Get the button
+var btn = document.getElementById("myBtn");
+
+// Pause and play the video, and change the button text
+function myFunction() {
+  if (video.paused) {
+    video.play();
+    btn.innerHTML = "Pause";
+  } else {
+    video.pause();
+    btn.innerHTML = "Play";
+  }
+}
+</script>
+{% endblock %}

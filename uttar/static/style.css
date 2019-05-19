@@ -1,0 +1,29 @@
+@charset "ISO-8859-1";
+.myhead1{
+	background-image: url("/static/images/banner.jpg");
+	background-size: cover; 
+	background-position: center;
+}
+body {
+	font-size: 1.1em;
+	font-family: 'Lobster', cursive;
+}
+@media (min-width: 768px) {
+	.myhead1{
+		height: 230px;
+	}	
+}
+
+main {
+/* background-image: url("/static/images/bg2.png"); */
+background-color:  #c7dffe;
+}
+
+.myhead2{
+	background-color: rgba(1,21,85, 0.5);
+	color: white;
+	border-radius: 20px;
+	padding: 10px;
+	text-align: center;
+	text-shadow: 3px 3px 3px black;
+}

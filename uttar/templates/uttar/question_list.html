@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content  %}
+<div class="row">
+<div class="col-sm-8">
+<form class="form-inline" action="/prashna/question/">
+<input value="{{request.GET.si}}" class="form-control mr-2" type="text" name="si" placeholder="Search" />
+<button class="btn btn-success" type="submit">Search</button>
+</form>
+</div>
+<div class="col-sm-4">
+{% if user.is_authenticated %}
+<p  class="text-right">
+<a class="btn btn-primary" href='/prashna/question/create/'>Add New Question</a>
+</p>
+{% endif %}
+</div>
+</div>
+<h1>Question List</h1>
+	<table class="table table-striped">
+	<thead class="thead-dark">
+	<tr><th>Question</th><th>Topic</th><th>Status</th><th>Action</th></tr>
+	</thead>
+	{% for q1 in object_list %}
+	<tr>
+	<td>{{q1}}</td>
+	<td>{{q1.topic}}</td>
+	<td>{{q1.status}}</td>	
+	<td ><a class="btn btn-info btn-sm" href="/prashna/question/{{q1.id}}/">Read More</a></td>
+	</tr>
+	{% endfor %}
+	</table>
+{% endblock %}
+
